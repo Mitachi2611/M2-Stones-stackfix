@@ -928,7 +928,7 @@ bool CHARACTER::DoRefine(LPITEM item, bool bMoneyOnly)
 		if (-1 == pos)
 		{
 			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("소지품에 빈 공간이 없습니다."));
-			return true;
+			return false;
 		}
 #endif
 
@@ -1222,7 +1222,7 @@ bool CHARACTER::DoRefineWithScroll(LPITEM item)
 		if (-1 == pos)
 		{
 			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("소지품에 빈 공간이 없습니다."));
-			return true;
+			return false;
 		}
 #endif
 
@@ -1273,7 +1273,7 @@ bool CHARACTER::DoRefineWithScroll(LPITEM item)
 		if (-1 == pos)
 		{
 			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("소지품에 빈 공간이 없습니다."));
-			return true;
+			return false;
 		}
 #endif
 

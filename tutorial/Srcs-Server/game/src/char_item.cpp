@@ -15,7 +15,7 @@
 		if (-1 == pos)
 		{
 			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("You don't have enough inventory space."));
-			return true;
+			return false;
 		}
 #endif
 
@@ -58,7 +58,7 @@
 		if (-1 == pos)
 		{
 			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("You don't have enough inventory space."));
-			return true;
+			return false;
 		}
 #endif
 
@@ -100,7 +100,7 @@
 		if (-1 == pos)
 		{
 			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("You don't have enough inventory space."));
-			return true;
+			return false;
 		}
 #endif
 
