@@ -7,18 +7,6 @@
 		// 성공! 모든 아이템이 사라지고, 같은 속성의 다른 아이템 획득
 		LPITEM pkNewItem = ITEM_MANAGER::instance().CreateItem(result_vnum, 1, 0, false);
 
-// and add under, this:
-
-#ifdef ENABLE_STONES_STACKFIX
-		DWORD invPos = GetEmptyInventory(item->GetSize());
-
-		if (-1 == invPos)
-		{
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("You don't have enough inventory space."));
-			return false;
-		}
-#endif
-
 // under, you have: if (pkNewItem)
 	// well, in this 'if', search this:
 
@@ -53,18 +41,6 @@
 		// 성공! 모든 아이템이 사라지고, 같은 속성의 다른 아이템 획득
 		LPITEM pkNewItem = ITEM_MANAGER::instance().CreateItem(result_vnum, 1, 0, false);
 
-// and add under, this:
-
-#ifdef ENABLE_STONES_STACKFIX
-		DWORD invPos = GetEmptyInventory(item->GetSize());
-
-		if (-1 == invPos)
-		{
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("You don't have enough inventory space."));
-			return false;
-		}
-#endif
-
 // under, you have: if (pkNewItem)
 	// well, in this 'if', search this:
 
@@ -91,24 +67,12 @@
 			ITEM_MANAGER::instance().RemoveItem(item, "REMOVE (REFINE SUCCESS)");
 #endif
 
-/// 3.) Search::
+/// 3.) Search:
 
 	else if (!bDestroyWhenFail && result_fail_vnum)
 	{
 		
 		LPITEM pkNewItem = ITEM_MANAGER::instance().CreateItem(result_fail_vnum, 1, 0, false);
-
-// and add under, this:
-
-#ifdef ENABLE_STONES_STACKFIX
-		DWORD invPos = GetEmptyInventory(item->GetSize());
-
-		if (-1 == invPos)
-		{
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("You don't have enough inventory space."));
-			return false;
-		}
-#endif
 
 // under, you have: if (pkNewItem)
 	// well, in this 'if', search this:
@@ -148,3 +112,46 @@
 						ITEM_MANAGER::instance().RemoveItem(item, "REMOVE (METIN)");
 #endif
 
+/// 4.) Search:
+
+bool CHARACTER::DoRefineWithScroll(LPITEM item)
+{
+	if (!CanHandleItem(true))
+	{
+		ClearRefineMode();
+		return false;
+	}
+..
+
+// and add under, this:
+
+#ifdef ENABLE_STONES_STACKFIX
+	DWORD pos = GetEmptyInventory(item->GetSize());
+
+	if (-1 == pos){
+		ChatPacket(CHAT_TYPE_INFO, LC_TEXT("소지하고 있는 아이템이 너무 많습니다."));
+		return false;
+	}
+#endif
+
+/// 4.) Search:
+
+bool CHARACTER::DoRefine(LPITEM item, bool bMoneyOnly)
+{
+	if (!CanHandleItem(true))
+	{
+		ClearRefineMode();
+		return false;
+	}
+..
+
+// and add under, this:
+
+#ifdef ENABLE_STONES_STACKFIX
+	DWORD pos = GetEmptyInventory(item->GetSize());
+
+	if (-1 == pos){
+		ChatPacket(CHAT_TYPE_INFO, LC_TEXT("소지하고 있는 아이템이 너무 많습니다."));
+		return false;
+	}
+#endif

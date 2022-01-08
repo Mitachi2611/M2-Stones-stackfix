@@ -809,7 +809,16 @@ bool CHARACTER::DoRefine(LPITEM item, bool bMoneyOnly)
 		ClearRefineMode();
 		return false;
 	}
-	
+
+#ifdef ENABLE_STONES_STACKFIX
+	DWORD pos = GetEmptyInventory(item->GetSize());
+
+	if (-1 == pos){
+		ChatPacket(CHAT_TYPE_INFO, LC_TEXT("소지하고 있는 아이템이 너무 많습니다."));
+		return false;
+	}
+#endif
+
 	//개량 시간제한 : upgrade_refine_scroll.quest 에서 개량후 5분이내에 일반 개량을 
 	//진행할수 없음
 	if (quest::CQuestManager::instance().GetEventFlag("update_refine_time") != 0)
@@ -922,16 +931,6 @@ bool CHARACTER::DoRefine(LPITEM item, bool bMoneyOnly)
 		// 성공! 모든 아이템이 사라지고, 같은 속성의 다른 아이템 획득
 		LPITEM pkNewItem = ITEM_MANAGER::instance().CreateItem(result_vnum, 1, 0, false);
 
-#ifdef ENABLE_STONES_STACKFIX
-		DWORD invPos = GetEmptyInventory(item->GetSize());
-
-		if (-1 == invPos)
-		{
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("You don't have enough inventory space."));
-			return false;
-		}
-#endif
-
 		if (pkNewItem)
 		{
 			ITEM_MANAGER::CopyAllAttrTo(item, pkNewItem);
@@ -1011,6 +1010,15 @@ bool CHARACTER::DoRefineWithScroll(LPITEM item)
 		ClearRefineMode();
 		return false;
 	}
+
+#ifdef ENABLE_STONES_STACKFIX
+	DWORD pos = GetEmptyInventory(item->GetSize());
+
+	if (-1 == pos){
+		ChatPacket(CHAT_TYPE_INFO, LC_TEXT("소지하고 있는 아이템이 너무 많습니다."));
+		return false;
+	}
+#endif
 
 	ClearRefineMode();
 
@@ -1219,16 +1227,6 @@ bool CHARACTER::DoRefineWithScroll(LPITEM item)
 		// 성공! 모든 아이템이 사라지고, 같은 속성의 다른 아이템 획득
 		LPITEM pkNewItem = ITEM_MANAGER::instance().CreateItem(result_vnum, 1, 0, false);
 
-#ifdef ENABLE_STONES_STACKFIX
-		DWORD invPos = GetEmptyInventory(item->GetSize());
-
-		if (-1 == invPos)
-		{
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("You don't have enough inventory space."));
-			return false;
-		}
-#endif
-
 		if (pkNewItem)
 		{
 			ITEM_MANAGER::CopyAllAttrTo(item, pkNewItem);
@@ -1272,16 +1270,6 @@ bool CHARACTER::DoRefineWithScroll(LPITEM item)
 	{
 		// 실패! 모든 아이템이 사라지고, 같은 속성의 낮은 등급의 아이템 획득
 		LPITEM pkNewItem = ITEM_MANAGER::instance().CreateItem(result_fail_vnum, 1, 0, false);
-
-#ifdef ENABLE_STONES_STACKFIX
-		DWORD invPos = GetEmptyInventory(item->GetSize());
-
-		if (-1 == invPos)
-		{
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("You don't have enough inventory space."));
-			return false;
-		}
-#endif
 
 		if (pkNewItem)
 		{
