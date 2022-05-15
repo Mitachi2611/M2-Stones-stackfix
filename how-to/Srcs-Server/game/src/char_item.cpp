@@ -20,7 +20,7 @@
 #ifdef ENABLE_STONES_STACKFIX
 			DWORD dwStonesVnum = item->GetVnum();
 
-			if (dwStonesVnum >= 28000 && dwStonesVnum <= 29000) {
+			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
 				ITEM_MANAGER::instance().FlushDelayedSave(pkNewItem);
@@ -54,7 +54,7 @@
 #ifdef ENABLE_STONES_STACKFIX
 			DWORD dwStonesVnum = item->GetVnum();
 
-			if (dwStonesVnum >= 28000 && dwStonesVnum <= 29000) {
+			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
 				ITEM_MANAGER::instance().FlushDelayedSave(pkNewItem);
@@ -88,7 +88,7 @@
 #ifdef ENABLE_STONES_STACKFIX
 			DWORD dwStonesVnum = item->GetVnum();
 
-			if (dwStonesVnum >= 28000 && dwStonesVnum <= 29000) {
+			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
 				ITEM_MANAGER::instance().FlushDelayedSave(pkNewItem);

@@ -945,7 +945,7 @@ bool CHARACTER::DoRefine(LPITEM item, bool bMoneyOnly)
 #ifdef ENABLE_STONES_STACKFIX
 			DWORD dwStonesVnum = item->GetVnum();
 
-			if (dwStonesVnum >= 28000 && dwStonesVnum <= 29000) {
+			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
 				ITEM_MANAGER::instance().FlushDelayedSave(pkNewItem);
@@ -1244,7 +1244,7 @@ bool CHARACTER::DoRefineWithScroll(LPITEM item)
 #ifdef ENABLE_STONES_STACKFIX
 			DWORD dwStonesVnum = item->GetVnum();
 
-			if (dwStonesVnum >= 28000 && dwStonesVnum <= 29000) {
+			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
 				ITEM_MANAGER::instance().FlushDelayedSave(pkNewItem);
@@ -1289,7 +1289,7 @@ bool CHARACTER::DoRefineWithScroll(LPITEM item)
 #ifdef ENABLE_STONES_STACKFIX
 			DWORD dwStonesVnum = item->GetVnum();
 
-			if (dwStonesVnum >= 28000 && dwStonesVnum <= 29000) {
+			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
 				ITEM_MANAGER::instance().FlushDelayedSave(pkNewItem);
