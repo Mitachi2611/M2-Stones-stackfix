@@ -943,8 +943,6 @@ bool CHARACTER::DoRefine(LPITEM item, bool bMoneyOnly)
 			DBManager::instance().SendMoneyLog(MONEY_LOG_REFINE, item->GetVnum(), -cost);
 
 #ifdef ENABLE_STONES_STACKFIX
-			DWORD dwStonesVnum = item->GetVnum();
-
 			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
@@ -1242,8 +1240,6 @@ bool CHARACTER::DoRefineWithScroll(LPITEM item)
 			DBManager::instance().SendMoneyLog(MONEY_LOG_REFINE, item->GetVnum(), -prt->cost);
 
 #ifdef ENABLE_STONES_STACKFIX
-			DWORD dwStonesVnum = item->GetVnum();
-
 			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
@@ -1287,8 +1283,6 @@ bool CHARACTER::DoRefineWithScroll(LPITEM item)
 			NotifyRefineFail(this, item, szRefineType, -1);
 
 #ifdef ENABLE_STONES_STACKFIX
-			DWORD dwStonesVnum = item->GetVnum();
-
 			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));

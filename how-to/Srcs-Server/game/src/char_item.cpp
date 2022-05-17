@@ -18,8 +18,6 @@
 // and replace this raw with this:
 
 #ifdef ENABLE_STONES_STACKFIX
-			DWORD dwStonesVnum = item->GetVnum();
-
 			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
@@ -52,8 +50,6 @@
 // and replace this raw with this:
 
 #ifdef ENABLE_STONES_STACKFIX
-			DWORD dwStonesVnum = item->GetVnum();
-
 			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
@@ -86,8 +82,6 @@
 // and replace this raw with this:
 
 #ifdef ENABLE_STONES_STACKFIX
-			DWORD dwStonesVnum = item->GetVnum();
-
 			if (item->GetType() == ITEM_METIN) {
 				item->SetCount(item->GetCount() - 1);
 				pkNewItem->AddToCharacter(this, TItemPos(INVENTORY, pos));
